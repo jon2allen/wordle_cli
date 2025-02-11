@@ -1,0 +1,5 @@
+
+list of wordle words
+
+curl -s https://raw.githubusercontent.com/tabatkins/wordle-list/main/words > wordle.words.txt
+

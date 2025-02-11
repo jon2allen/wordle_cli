@@ -1,0 +1,25 @@
+wordle:  small
+ 
+Guess: swift
+
+swift
+$####
+
+Guess: sails
+
+sails
+$*###
+
+
+Guess:
+
+small
+$$$$$ --- Worle complete *
+
+
+Guess:
+
+snail
+$#$#$
+
+Thanks for trying: wordle is small
