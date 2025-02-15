@@ -11,9 +11,9 @@ class wordle_app:
        print("pick: ", self.wordle.wordle_word )
        self.guess_list = [] 
 
-  def print_loop( self ):
-
-       guess = input("Guess: " )
+  def print_loop( self , count):
+       prompt = str(count+1) + "  Guess: "
+       guess = input(prompt )
        st = self.wordle.wordle_cmp(guess)
        self.guess_list.append(st)
   
@@ -27,47 +27,15 @@ class wordle_app:
   def run( self ):
 
        for i in range(5):
-           self.print_loop()
+           self.print_loop(i)
            self.print_status()
-  
-def main():
-   
-   guess_list = []
- 
 
-   def status_loop():
 
-      for i in guess_list:
-        print(" ")
-        w.print_status(i)
-        print(" ")
-
-   def print_loop():
-
-          guess = input("Guess: ")
-
-          print(w.is_wordle_word(guess))
-
-          st = w.wordle_cmp( guess )
-
-          guess_list.append(st)
-          
-          status_loop() 
-
-   w = wordle("wordle.words.sorted.txt")
-
-   w.wordle_reader()
-
-   w.print_wordle_list(10)
-
-   print(w.pick_wordle_word())
-
-   for i in range(5):
-       print_loop()
 
 if __name__ == "__main__" :
 
    #  main()
 
-   app = wordle_app("wordle.words.sorted.txt" )
+   #app = wordle_app("wordle.words.sorted.txt" )
+   app = wordle_app("common_words.txt" )
    app.run()

@@ -10,6 +10,7 @@ class wordle:
    def __init__( self, wordle_file ):
       self.wordle_file = wordle_file
       self.wordle_word = ""
+      self.winner = False
    def wordle_reader( self ):
       with open(self.wordle_file) as f:
          self.wordle_db = f.readlines()
@@ -23,6 +24,8 @@ class wordle:
 
    def pick_wordle_word( self ):
        self.wordle_word = random.choice(self.wordle_db)
+       #self.wordle_word = "broom"
+       #self.wordle_word = "daddy"
        return self.wordle_word 
 
    def is_wordle_word( self, word ):
@@ -58,7 +61,14 @@ class wordle:
           st2 += self.get_status_indicator(ltr[1])
        print("word entered         : ",  word )
        print("Letter status key    : ",  st2 ,  "key $ = correct position, x = used somewhere else, # = not in wordle")
+       self.winner = self.test_for_winner( st2 )
 
+   def test_for_winner( self, status ):
+       if status == "$$$$$":
+          return True
+       else:
+          return False
+       
        
    def wordle_cmp( self, guess ):
        if len( guess ) != 5:
@@ -69,7 +79,14 @@ class wordle:
        pos = 0 
        while guess_ltr:
              letter = guess_ltr.pop(0)
-             idx = self.wordle_word.find(letter) 
+             #print("letter: ", letter )
+             idx2  = self.wordle_word.find(letter) 
+             idx = self.wordle_word.find(letter,pos)
+             #backtrack to see if letter comes earlier.
+             if idx2 > -1 and idx == -1: 
+                #print("idx2: ", idx2 ) 
+                #print("idx: ", idx )
+                idx = idx2 
              # debug prints
              # print ( "Index : ", idx, "Pos: ",pos )
              # print ( self.letter_status( letter, pos, idx ))
