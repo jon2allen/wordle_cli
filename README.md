@@ -1,5 +1,5 @@
 # wordle_cli
-cli version of wordle
+cli version of wordle.  No AI used 
 
 TODO - have a command exit.  debug setting 
 
