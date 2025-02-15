@@ -56,8 +56,8 @@ class wordle:
        for ltr in status_list:
           word += ltr[0]
           st2 += self.get_status_indicator(ltr[1])
-       print("print status, word : ",  word )
-       print("print status, st2  : ",  st2 ,  "key $ = correct position, x = used somewhere else, # = not in wordle")
+       print("word entered         : ",  word )
+       print("Letter status key    : ",  st2 ,  "key $ = correct position, x = used somewhere else, # = not in wordle")
 
        
    def wordle_cmp( self, guess ):
@@ -70,10 +70,11 @@ class wordle:
        while guess_ltr:
              letter = guess_ltr.pop(0)
              idx = self.wordle_word.find(letter) 
-             print ( "Index : ", idx, "Pos: ",pos )
-             print ( self.letter_status( letter, pos, idx ))
+             # debug prints
+             # print ( "Index : ", idx, "Pos: ",pos )
+             # print ( self.letter_status( letter, pos, idx ))
              status.append(self.letter_status( letter, pos, idx ))   
              pos=pos+1 
-       print(status)
+       #print(status)
        return status
        

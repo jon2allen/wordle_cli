@@ -3,3 +3,6 @@ list of wordle words
 
 curl -s https://raw.githubusercontent.com/tabatkins/wordle-list/main/words > wordle.words.txt
 
+common words
+
+curl https://gist.githubusercontent.com/shmookey/b28e342e1b1756c4700f42f17102c2ff/raw/ed4c33a168027aa1e448c579c8383fe20a3a6225/WORDS > common.txt
