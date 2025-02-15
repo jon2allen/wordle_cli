@@ -8,14 +8,33 @@ class wordle_app:
        self.wordle = wordle( wordle_file )
        self.wordle.wordle_reader()
        self.wordle.pick_wordle_word()
-       print("pick: ", self.wordle.wordle_word )
+       #print("pick: ", self.wordle.wordle_word )
        self.guess_list = [] 
 
+  def process_command(self, cmd ):
+      if cmd == "/exit":
+        quit() 
+      if cmd == "/hint":
+        print( " hint: ", self.wordle.wordle_word )
+
+
   def print_loop( self , count):
-       prompt = str(count+1) + "  Guess: "
-       guess = input(prompt )
-       st = self.wordle.wordle_cmp(guess)
-       self.guess_list.append(st)
+       lpe = True
+       while lpe == True:
+          prompt = str(count+1) + "  Guess: "
+          guess = input(prompt )
+          if len(guess) != 5:
+             lpe = True
+             print("Need 5 letters....")
+             continue 
+          if guess[0] == '/':
+             self.process_command( guess )
+             lpe = True
+          else:   
+             st = self.wordle.wordle_cmp(guess)
+             self.guess_list.append(st)
+             lpe = False
+
   
   def print_status( self ):
 
@@ -23,6 +42,13 @@ class wordle_app:
            print(" " )
            self.wordle.print_status(i)
            print(" " )
+           if self.wordle.winner == True:
+              print("***************************")
+              print("you have guess the wordle  ")
+              print("***************************")
+              quit()
+
+        
  
   def run( self ):
 
@@ -30,7 +56,9 @@ class wordle_app:
            self.print_loop(i)
            self.print_status()
 
+       if self.wordle.winner == False:
 
+           print(" Wordle was:  ", self.wordle.wordle_word )
 
 if __name__ == "__main__" :
 
